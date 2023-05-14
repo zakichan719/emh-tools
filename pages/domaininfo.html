@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EMH</title>
+	<!-- Include Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+ 
+	<div class="container-fluid">
+	
+	<div class="row" bis_skin_checked="1">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" bis_skin_checked="1">
+          <div class="card" bis_skin_checked="1">
+            <div class="card-body p-3" bis_skin_checked="1">
+              <div class="row" bis_skin_checked="1">
+                <div class="col-12" bis_skin_checked="1">
+                  <div class="mb-3" bis_skin_checked="1">
+                    <input type="email" id="checkdomain" class="form-control" placeholder="Domain info checker" aria-label="Email" aria-describedby="email-addon">
+                    <button type="button" onclick="checkdomain()" title="double click" class="btn  gradient  w-100 mt-4 mb-0">Domain info checker</button>
+                  </div>
+                </div>
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" bis_skin_checked="1">
+          <div class="card" bis_skin_checked="1">
+            <div class="card-body p-3" bis_skin_checked="1">
+              <div class="row" bis_skin_checked="1">
+                <div class="col-12" bis_skin_checked="1">
+                  <div class="mb-3" bis_skin_checked="1">
+                    <input type="email" class="form-control" id="checkip" placeholder="ip info checker" aria-label="Email" aria-describedby="email-addon">
+                    <button type="button" onclick="checkip()" title="double click" class="btn  gradient  w-100 mt-4 mb-0">ip info checker</button>
+                  </div>
+                </div>
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+        
+       
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" bis_skin_checked="1">
+          <div class="card" bis_skin_checked="1">
+            <div class="card-body p-3" bis_skin_checked="1">
+              <div class="row" bis_skin_checked="1">
+                <div class="col-12" bis_skin_checked="1">
+                  <div class="mb-3" bis_skin_checked="1">
+                    <button type="button" onclick="talos()" class="btn  gradient  w-100 mt-4 mb-0">check talos</button>
+                  </div>
+                </div>
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" bis_skin_checked="1">
+          <div class="card" bis_skin_checked="1">
+            <div class="card-body p-3" bis_skin_checked="1">
+              <div class="row" bis_skin_checked="1">
+                <div class="col-12" bis_skin_checked="1">
+                  <div class="mb-3" bis_skin_checked="1">
+                    <button type="button" onclick="searsh_domains()" class="btn  gradient  w-100 mt-4 mb-0">searsh domain</button>
+                  </div>
+                </div>
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+	
+  <div class="row">
+
+    <!-- Iframe Column 1 -->
+    <div class="col-lg-6 col-sm-12" style="border:none;height:1000px;padding: 4px">
+      <iframe id="f1" src="" style="border:none;height:100%;width:100%;"></iframe>
+    </div>
+
+    <!-- Iframe Column 2 -->
+    <div class="col-lg-6 col-sm-12" style="border:none;height:1000px;padding: 4px">
+      <iframe id="f2" src="" style="border:none;height:100%;width:100%;"></iframe>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <!-- Iframe Column 3 -->
+    <div class="col-lg-6 col-sm-12" style="border:none;height:1000px;padding: 4px">
+      <iframe id="f3" src="" style="border:none;height:100%;width:100%;"></iframe>
+    </div>
+
+    <!-- Iframe Column 4 -->
+    <div class="col-lg-6 col-sm-12" style="border:none;height:1000px;padding: 4px">
+      <iframe id="f4" src="" style="border:none;height:100%;width:100%;"></iframe>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <!-- Iframe Column 5 -->
+    <div class="col-lg-6 col-sm-12" style="border:none;height:1000px;padding: 4px">
+      <iframe id="f5" src="" style="border:none;height:100%;width:100%;"></iframe>
+    </div>
+
+    <!-- Iframe Column 6 -->
+    <div class="col-lg-6 col-sm-12" style="border:none;height:1000px;padding: 4px">
+      <iframe id="f6" src="" style="border:none;height:100%;width:100%;"></iframe>
+    </div>
+
+  </div>
+  
+   
+  
+  
+</div>
+
+	<!-- Include Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	 
+	<script>
+	
+	    
+  function tools1(){
+      document.getElementById("f1").setAttribute("src", "https://www.ultimatedomains.com/extract-domains.php");;
+      document.getElementById("f2").setAttribute("src", "https://emh.zakichan.com/multiweb.html");
+ 
+
+      document.getElementById("f3").setAttribute("src", "https://wordhtml.com/");;
+      document.getElementById("f4").setAttribute("src", "https://www.calculateme.com/text/text-to-html-table#txt-before");
+      document.getElementById("f5").setAttribute("src", "https://www.textfixerfr.com/outils/supprimer-lignes-dupliquees.php#sortNone");
+
+       
+      document.getElementById("f6").setAttribute("src", " ");
+  }
+function game(){
+     
+      document.getElementById("f2").setAttribute("src", "https://emh.zakichan.com/game/game.html");
+  
+  }
+function chat(){
+     
+window.open('https://emh.zakichan.com/chat/index.php' , '_blank');
+  
+  }
+
+  
+  function tools2(){
+   
+     
+
+    
+
+       //   document.getElementById("f2").setAttribute("src", "https://www.browserling.com/tools/random-lines#tool-announcement");;
+            document.getElementById("f1").setAttribute("src", "https://notepad-online.com/en/");
+     //     document.getElementById("f3").setAttribute("src", "https://emh.zakichan.com/random.html");
+    //      document.getElementById("f3").setAttribute("src", "https://emh.zakichan.com/dot.html");
+            document.getElementById("f2").setAttribute("src", "https://ytool.net/en/extract-ip/");
+  //        document.getElementById("f6").setAttribute("src", " ");
+
+  }
+
+
+
+
+
+
+
+ function searsh_domains (){
+  var randomNumber=Math.floor(Math.random() * (497500-0)) + 1 ;
+ window.open('https://majestic.com/reports/majestic-million?majesticMillionType=2&oq=&page=500&tld=com&s='+randomNumber, '_blank');
+
+  }
+
+
+function checkdomain(){
+
+ 
+
+var Dm = document.getElementById('checkdomain').value;
+
+
+
+//fetch('https://api.codetabs.com/v1/proxy?quest=' + ipDm).then((response) => response.text()).then((text) =>   document.getElementById('f1').innerHTML=  text)  ;
+
+
+//document.getElementById("f0").setAttribute("src", "https://"+ipDm );
+document.getElementById("f1").setAttribute("src", "https://mxtoolbox.com/SuperTool.aspx?action=dmarc%3a"+Dm+"&run=toolpage");
+document.getElementById("f2").setAttribute("src", "https://mxtoolbox.com/SuperTool.aspx?action=spf%3a"+Dm+"&run=toolpage");
+document.getElementById("f3").setAttribute("src", "https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a"+Dm+"&run=toolpage");
+document.getElementById("f6").setAttribute("src", "https://www.brightcloud.com/tools/url-ip-lookup.php");
+document.getElementById("f5").setAttribute("src", "https://who.is/whois/"+Dm+"#domainAvailabilityPowerBarContent");
+document.getElementById("f4").setAttribute("src", "https://www.ipqualityscore.com/domain-reputation/"+Dm);
+//document.getElementById("f7").setAttribute("src", "https://dnschecker.org/all-dns-records-of-domain.php?query="+Dm+"&rtype=ALL&dns=google");;
+//document.getElementById("f8").setAttribute("src", "https://");
+//document.getElementById("f9").setAttribute("src", "https://");
+
+
+}
+
+
+
+
+ 
+
+
+function checkip(){
+var ip = document.getElementById('checkip').value;
+document.getElementById("f1").setAttribute("src", "https://www.ipqualityscore.com/domain-reputation/"+ip);
+document.getElementById("f2").setAttribute("src", "https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a"+ip+"&run=toolpage");
+//document.getElementById("f3").setAttribute("src", "https://");
+//document.getElementById("f4").setAttribute("src", "https://");
+//document.getElementById("f5").setAttribute("src", "https://");
+//document.getElementById("f6").setAttribute("src", "https://");
+}
+
+
+
+
+
+
+
+function talos(){
+var ipDm = document.getElementById('checkdomain').value;
+window.open('https://talosintelligence.com/reputation_center/lookup?search='+ipDm, '_blank');
+
+
+
+
+}
+	
+	</script>
+</body>
+</html>

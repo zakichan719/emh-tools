@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PDF Text Extractor</title>
+</head>
+<body>
+	<h1>PDF Text Extractor</h1>
+	<form id="pdf-form">
+		<label for="pdf-files">Select PDF files:</label>
+		<input type="file" id="pdf-files" name="pdf-files[]" multiple>
+		<button type="submit">Extract text</button>
+	</form>
+	<div id="output"></div>
+	<script>
+		const form = document.getElementById('pdf-form');
+		const output = document.getElementById('output');
+		
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			
+			const files = document.getElementById('pdf-files').files;
+			
+			if (files.length === 0) {
+				output.innerHTML = 'No files selected.';
+				return;
+			}
+			
+			const formData = new FormData();
+			
+			for (let i = 0; i < files.length; i++) {
+				formData.append('pdf-files[]', files[i]);
+			}
+			
+			fetch('/extract-text', {
+				method: 'POST',
+				body: formData
+			})
+			.then(response => response.text())
+			.then(text => {
+				output.innerHTML = text;
+			})
+			.catch(error => {
+				output.innerHTML = 'Error: ' + error.message;
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+    body{
+       padding: 20px;
+    }
+        #textarea, #textarea2, #textarea3 {
+            resize: none;
+        }
+        button {
+            width: 17%;
+            padding: 3px;
+            background-color: black;
+            color: white;
+        }
+        .footer-end {
+            position: fixed;
+            bottom: 0;
+            z-index: 100;
+            width: 100%;
+            height: 25px;
+            margin: auto;
+            background: transparent;
+            padding: 4px 40px 25px 5px;
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            text-align: center;
+        }
+        .footer-end p {
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .footer-end a {
+            text-decoration: none;
+            color: rgb(0, 0, 0)
+        }
+        .footer-end a:hover {
+            color:  #2bff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">  
+    <h1>Split User</h1> 
+        <div class="row justify-content-center mt-5">   
+        
+      
+        
+        
+            <div class="col-md-4">  <textarea name="" id="textarea" cols="60" rows="10" class="form-control mb-3" placeholder="user@gmail.com"></textarea> </div>
+             <div class="col-md-4">  <textarea name="" id="textarea2" cols="60" rows="10" class="form-control mb-3" placeholder="user"></textarea> </div>
+            
+             <div class="col-md-4">   <textarea name="" id="textarea3" cols="60" rows="10" class="form-control mb-3" placeholder="@xxxx.com"></textarea>  </div>
+          
+            
+        </div>
+        
+        <button class="btn btn-dark mb-3" onclick="splitFunction()">Split</button>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="footer-end">
+                    <p>By: <a href="https://t.me/belkhnati_zakariae">@zakichan</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <script>
+        function splitFunction() {
+            var input = document.getElementById('textarea').value.trim();
+            var lines = input.split('\n');
+            var usernames = "";
+            var domains = "";
+
+            for (let i = 0; i < lines.length; i++) {
+                var username = lines[i].split('@')[0].trim();
+                var domain = lines[i].split('@')[1].trim();
+
+                usernames += username + "\n";
+                domains += domain + "\n";
+            }
+
+            document.getElementById('textarea2').value = usernames.trim();
+            document.getElementById('textarea3').value = domains.trim();
+        }
+
+        function copyFunction() {
+            var input = document.getElementById('textarea2');
+            input.select();
+            input.setSelectionRange(0, 99999); // For mobile devices
+
+            navigator.clipboard.writeText(input.value.trim());
+            alert("Result copied!");
+        }
+    </script>
+</body>
+</html>

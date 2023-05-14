@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html> 
+
+<head> 
+<meta charset="UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>multi source
+</title> 
+<style>
+
+    textarea#source {
+        width: 97%;
+        height: 70vh;
+        font-style: revert;
+        font-family: monospace;
+        font-size: larger;
+        margin-left: 1%;
+        background-color: rgb(0 0 0 / 50%);
+        color: #ffffff;
+        border-color: white;
+    }
+
+    .hfsource {
+        font-style: revert;
+        font-family: monospace;
+        font-size: larger;
+        margin: 3%;
+        background-color: transparent;
+        color: lightblue;
+    }
+
+    img {
+        opacity: 0.5;
+    }
+
+    button {
+        padding: 6px;
+        background-color: #001e3682;
+        color: white;
+        border-radius: 4px;
+        border-color: cadetblue;
+        margin-bottom: 12px;
+    }
+
+    body {
+        background-image: url("bg.png");
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    h3,
+    span {
+        color: #efffef;
+        background-color: #044067;
+    }
+
+    a {
+        color: #015973;
+    }
+
+    a:hover {
+        color: #00799e;
+    }
+
+    textarea#textarea {
+        border-radius: 6px;
+        padding: 11px;
+        background-color: transparent;
+        color: azure;
+        font-family: monospace;
+        border-color: white;
+        width: 248px;
+    }
+
+    input[type="number" i] {
+        width: 34px;
+        background-color: black;
+        color: white;
+    }
+</style>
+ </header>
+
+<body> <center> 
+<h3>Get code source from web sites </h3>
+<div class="container"> 
+<textarea id="textarea" rows="7" placeholder="past domains one in lign">
+</textarea> 
+</div>  
+<h3>domain selected: 
+
+<span id="DOMS">---</span>  
+
+</h3>
+
+<button onclick="randonSelect()">Get source </button> /<button onclick="selectfooter()">Get footer </button>
+<input type="number" name="" id="fn" value="30" >/ <button onclick="selectheader()">Get header </button> 
+<input type="number" name="" id="hn" value="50" > <button onclick="clearfromlist()">clear from list </button> </center> 
+<textarea id="source" placeholder="">
+</textarea> 
+<script>
+    function clearfromlist() {
+        const input = document.getElementById("textarea").value;
+        const stxt = document.getElementById("DOMS").innerHTML;
+        var newinput = "";
+        const lines = input.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+            if (lines[i] != stxt) {
+                if (i == lines.length - 1) {
+                    newinput += lines[i];
+                } else newinput += lines[i] + "\n";
+            }
+        }
+        document.getElementById("textarea").value = newinput;
+        alert(stxt + " removed");
+    }
+    /*footer extraction */ function selectfooter() {
+        var i = 0;
+        const input = document.getElementById("source").value;
+        const fn = document.getElementById("fn").value;
+        const lines = input.split("\n");
+        var foot = "";
+        for (let i = 0; i < lines.length; i++) {
+            if (lines[i].includes("<footer")) {
+                foot += lines[i] + "\n";
+                for (let j = 1; j < fn; j++) {
+                   
+                    foot += lines[i + j] + " \n";
+                }
+                navigator.clipboard.writeText(foot);
+                alert("footer is auto copy");
+                break;
+            }
+        }
+        if (foot == "") {
+            alert("no footer found");
+        }
+    }
+    /*header extraction*/ function selectheader() {
+        var i = 0;
+        const input = document.getElementById("source").value;
+        const hn = document.getElementById("hn").value;
+        const lines = input.split("\n");
+        var hed = "";
+        for (let i = 0; i < hn; i++) {
+            hed += lines[i];
+        }
+        navigator.clipboard.writeText(hed);
+        alert("header is auto copy");
+    }
+    /* random select*/ function randonSelect() {
+        const input = document.getElementById("textarea").value;
+        const lines = input.split("\n");
+        const d = lines[Math.floor(Math.random() * lines.length)];
+        /*Display your line*/ document.getElementById("DOMS").innerHTML = d;
+        fetch("https://api.codetabs.com/v1/proxy?quest=" + d)
+            .then((response) => response.text())
+            .then((text) => (document.getElementById("source").innerHTML = text));
+    }
+</script>
+
+</body>
+</html>

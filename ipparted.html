@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>extractIp</title>
+  <!-- Link to Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: aliceblue;
+    }
+
+    #result button {
+      position: absolute;
+    }
+
+    .footer-end {
+      width: 100%;
+      height: 25px;
+      margin: auto;
+      background: transparent;
+      padding: 4px 40px 25px 5px;
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .footer-end p {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      text-align: center;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .footer-end a {
+      text-decoration: none;
+      color: rgb(0, 0, 0)
+    }
+
+    .footer-end a:hover {
+      color: #2bff00;
+    }
+
+    .footer-end {
+      position: fixed;
+      bottom: 0;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-5">
+        <textarea class="form-control" placeholder="Paste Selected Server by IP(s) (SERVER:IP)" name="serverbyip" id="serverbyip" cols="35" rows="10"></textarea>
+        <br>
+         <textarea class="form-control" placeholder="Paste Server(s) You Want to Send" name="serversparts" id="serversparts" cols="35" rows="10"></textarea>
+       
+        <br>
+        <button class="btn btn-primary btn-block" onclick="extractIP()">Extract IP (AutoCopy)</button>
+      </div>
+      <div class="col-md-6 mt-5">
+        <textarea class="form-control" placeholder="Result IP" name="result" id="result" cols="35" rows="20"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-end">
+    <p>By: <a href="https://t.me/belkhnati_zakariae">@zakichan</a></p>
+  </div>
+
+  <!-- Link to Bootstrap JS and jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text);
+    }
+
+    function extractIP() {
+        var serversparts = document.getElementById('serversparts').value.split('\n');
+        var serverbyip = document.getElementById('serverbyip').value.split('\n');
+        var textcopy = "";
+         document.getElementById('result').innerHTML ="";
+
+        for (let j = 0; j < serversparts.length; j++) {
+            for (let o = 0; o < serverbyip.length; o++) {
+                if (serversparts[j] == serverbyip[o].split(':')[0] && serversparts[j] != "") {
+                    document.getElementById('result').innerHTML += serverbyip[o].split(':')[1] + "\n";
+                    textcopy += serverbyip[o].split(':')[1] + "\n";
+                }
+            }
+        }
+
+        copyToClipboard(textcopy);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>negatives</title>
+    <link rel="stylesheet" href="style.css">
+ 
+</head>
+<body>
+    <form action="">
+        <div class="form">
+        <input name="file" id="fileinput" ref="fileInput" type="file"     multiple>
+        <div>     
+     </form>   
+            <img src="upload.png" alt="upload" width="7%" class="mx-2">
+            Upload your files here or 
+            <button class="btn bg-color-dblue btn-primary px-4 py-3">Browse</button></div>
+        <span id="fileName" class="text-primary ">
+        </span>
+     </div>
+ 
+<br><br><br><br>
+ <button class="btn btn1 bg-color-dblue btn-primary px-4 py-3" onclick="" ><a id="btnlink" href="">fusion files</a></button>
+ 
+ <button class="btn bg-color-dblue btn-primary px-4 py-3"    ><a id="btnshuffle"  onclick="Shuffle()" href="#">Shuffle</a></button>
+ <textarea style="display:none ;"  name="" id="hidetextarea" cols="200" rows="10"></textarea>
+     <script>
+        /**
+         *    JavaScript   that reads a file as text.
+         **/
+         
+
+
+    
+         function getligns(values) {
+            valuestext="";
+            var lines = values.split('\n');
+           
+            if(lines.length>9)
+            {
+                for(let i = 0;i < 10 ;i++){
+                    if(i<=10-2)
+                    valuestext += lines[i]+`\n` ;
+                    else if(i==10-1)
+                    valuestext += lines[i] ;
+                }
+                return valuestext;
+
+            }
+            else
+            {
+
+                return values;
+            }
+         
+           
+        
+        }
+
+
+         function readFileAsText(file){
+            return new Promise(function(resolve,reject){
+                let fr = new FileReader();
+
+                fr.onload = function(){
+                    resolve(fr.result);
+                };
+
+                fr.onerror = function(){
+                    reject(fr);
+                };
+
+                fr.readAsText(file);
+            });
+        }
+
+        // Handle multiple fileuploads
+        document.getElementById("fileinput").addEventListener("change", function(ev){
+
+           //----------- document.getElementById("hidetextarea").innerHTML="";
+            let files = ev.currentTarget.files;
+            let readers = [];
+
+            // Abort if there were no files selected
+            if(!files.length) return;
+
+            // Store promises in array
+            for(let i = 0;i < files.length;i++){
+                readers.push(readFileAsText(files[i]));
+            }
+            
+            // Trigger Promises
+            Promise.all(readers).then((values) => {
+                // Values will be an array that contains an item
+                // with the text of every selected file
+                // ["File1 Content", "File2 Content" ... "FileN Content"]
+              
+            
+
+          var  migratefile=`` ;
+
+                migratefile="";
+
+             document.getElementById("fileName").innerHTML=  values.length+ " file selected";
+
+                for(let i = 0;i < values.length ;i++){
+                    if(i<=values.length-2)
+                    migratefile += getligns(values[i])+`\n__SEP__\n` ;
+                    else if(i==values.length-1)
+                    migratefile += getligns(values[i])+`\n` ;
+                }
+
+                if(values.length==1)
+                {
+                    document.getElementById("hidetextarea").innerHTML=values[0];
+                }
+
+
+                // Create element with <a> tag
+                const link = document.getElementById("btnlink")
+
+                // Create a blog object with the file content which you want to add to the file
+                const file = new Blob([migratefile], { type: 'text/plain' });
+
+                // Add file content in the object URL
+                link.href = URL.createObjectURL(file);
+
+                // Add file name
+                link.download = "result.txt";
+
+                // Add click event to <a> tag to save file.
+              //  link.click();
+               // URL.revokeObjectURL(link.href);
+
+
+      
+
+            });
+        }, false);
+
+
+        function _shuffle(array) {
+            let currentIndex = array.length,  randomIndex;
+          
+            // While there remain elements to shuffle.
+            while (currentIndex != 0) {
+          
+              // Pick a remaining element.
+              randomIndex = Math.floor(Math.random() * currentIndex);
+              currentIndex--;
+          
+              // And swap it with the current element.
+              [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+            }
+          
+            return array;
+          }
+          
+         
+      
+
+        
+       
+     
+      
+   var tableindex;
+        function Shuffle(){
+            var arr = new Array();
+            var lines = document.getElementById('hidetextarea').value.split('\n__SEP__\n');
+            var shuffleresult =" ";
+            for(let i = 0;i < lines.length ;i++){
+                arr.push(i);
+            }
+            
+            // Used like so
+           
+            arr = _shuffle(arr);
+            for(let i = 0;i < lines.length ;i++){
+                
+               
+                
+                if(i<=lines.length-2)
+                shuffleresult+=lines[arr[i]] +`\n__SEP__\n` ;
+                else if(i==lines.length-1)
+                shuffleresult +=lines[arr[i]] ;
+
+
+
+                
+               
+            }
+
+
+            
+                // Create element with <a> tag
+                    const link = document.getElementById("btnshuffle")
+
+                    // Create a blog object with the file content which you want to add to the file
+                    const file = new Blob([shuffleresult], { type: 'text/plain' });
+    
+                    // Add file content in the object URL
+                    link.href = URL.createObjectURL(file);
+    
+                    // Add file name
+                    link.download = "shuffleresult.txt";
+    
+                    // Add click event to <a> tag to save file.
+                  //  link.click();
+                   // URL.revokeObjectURL(link.href);
+
+           
+            
+        }
+
+
+    </script>
+
+
+
+
+
+</body>
+</html>

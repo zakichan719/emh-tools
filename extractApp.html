@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+   #input
+   {
+    width:100%;
+   } 
+ 
+ #resul  {
+    background-color:rgb(222 234 255 / 35%);
+   } 
+  
+</style>
+</head>
+<body>
+   <textarea name="" id="input"   rows="10">
+    
+   </textarea>  
+   <br>
+   <button onclick="result()" >result</button>
+   <center>
+    <span id="count"></span> <br>
+    <textarea name="" id="resul" cols="50" rows="47"> </textarea>
+</center>
+
+
+ <script> 
+ 
+     
+      
+
+        function result (text)
+        {
+
+
+var input = document.getElementById('input').value;
+var lines = input.split('\n');
+var countemail=0;
+var valid="";
+ 
+
+
+
+for (let i = 0; i < lines.length; i++) {
+  
+  if(lines[i].includes("Valid and Safe")||lines[i].includes("each is disabled")||lines[i].includes("not exist"))
+  {
+    valid+=  lines[i].match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi)+" \n";
+    countemail++;
+  }
+   
+
+}
+
+ 
+
+document.getElementById('count').innerHTML=countemail;
+document.getElementById('resul').value=valid;
+ 
+           
+        }
+
+       
+ 
+ 
+ </script>
+   
+</body>
+</html>

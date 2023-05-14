@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Email Tools</title>
+    
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    
+    <style>
+      /* Add styles for the welcome page here */
+      body {
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+      }
+ 
+      
+      #particles-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+      
+      .header {
+        text-align: center;
+        padding: 50px;
+        color: #333;
+      }
+      .header h1 {
+        font-size: 60px;
+        margin: 0;
+        text-shadow: 3px 3px 3px #ddd;
+      }
+      .header p {
+        font-size: 24px;
+        margin-top: 20px;
+      }
+      .cta {
+        text-align: center;
+        margin-top: 50px;
+      }
+      .cta button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 20px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 24px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 3px #ddd;
+        cursor: pointer;
+      }
+      .cta button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+   
+
+  </head>
+  <body>
+ 
+    <div class="header">
+         <canvas id="particles-canvas"></canvas>
+      <h1>Welcome to Email Tools</h1>
+      <p>Your one-stop shop for email marketing</p>
+    </div>
+    <div class="cta">
+      <button>Get Started</button>
+    </div>
+	
+	
+	
+	 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      /* Add particles effect configuration */
+   particlesJS("particles-canvas", {
+  "particles": {
+    "number": {
+      "value": 100,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 0,
+        "color": "#000000"
+      },
+      "polygon": {
+        "nb_sides": 5
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 0.5,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 3,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 40,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 0.4,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 6,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "repulse"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 400,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 400,
+        "size": 40,
+        "duration": 2,
+        "opacity": 8,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": true
+});
+</script>
+  </body>
+</html>

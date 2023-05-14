@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>planning repo</title>
+    <style>
+           body {
+    background-color: aliceblue;
+    padding: 100px;
+}
+
+
+
+      input[type="number"] {
+    width: 49px;
+    margin: 5px 13px;
+     }
+
+     textarea{
+      padding-top: 20px;
+     }
+#result button {
+    position: absolute;
+}
+
+.footer-end {
+    width: 100%;
+    height: 25px;
+    margin: auto;
+    background: transparent;
+    padding: 4px 40px 25px 5px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    text-align: center;
+}
+.footer-end p{
+	font-family: 'Roboto Slab', serif;
+	font-size: 16px;
+	text-align: center;
+	color: rgb(0, 0, 0);
+	font-weight: bold;
+	letter-spacing: 2px;
+
+}
+.footer-end a{
+
+text-decoration: none;
+color: rgb(0, 0, 0)
+}
+.footer-end a:hover{
+	color:  #2bff00;
+}
+.footer-end{  
+    position: fixed;  
+    bottom: 0;  
+    z-index: 100;  
+}
+
+
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+
+    </style>
+
+ 
+</head>
+
+<body text="">
+  
+   
+   
+
+ 
+ 
+<label for="rdp">rdp.....</label><input type="text"  placeholder="" name="rdp" id="inputrdp">
+<br> <br>
+<label for="rdp">send...</label><input type="text" placeholder="xx/xx" name="send" id="inputsend">
+<br>
+<br>   
+<button onclick="work()">test</button> 
+<br>
+<br>  
+ 
+<table class="styled-table" id="myTable">
+ 
+   
+</table>
+ 
+ 
+ <div class="footer-end">
+  <p> By: <a href="https://t.me/belkhnati_zakariae">@zakichan</a></p>
+</div>
+
+
+ 
+ <script> 
+ 
+ function copy(i){
+   var copyText = document.getElementById('textarea'+i).value;
+   navigator.clipboard.writeText(copyText);
+
+  // navigator.clipboard
+   //   .writeText(copyText)
+   //   .then(() => {
+   //     alert("successfully copied deploy "+(i+1));
+   //   })
+   //   .catch(() => {
+    //    alert("something went wrong deploy "+(i+1) );
+    //  });
+}
+   
+
+ 
+ 
+
+
+function remove_separator(text)
+{
+  if(text.includes("/"))
+  {
+    return text.split('/')[0]+""+text.split('/')[1]
+  }
+  else
+  return text
+}
+
+function getfirstrdp(text)
+{
+  if(text.substring(0, 1)=="5")
+  return "5/";
+  else
+    return text.substring(0, 1);
+   
+}
+
+function get_index_of_firstrdp(array,l)
+{
+ 
+    return array.findIndex("3");
+   
+}
+function check( )
+{
+ 
+    return array.findIndex("3");
+   
+}
+
+function check_2separator(text)
+{
+  if(text.split('/')[1]!="")
+  {
+    return  true ;
+  }
+  else
+  return  false ;
+}
+
+
+ function work(){
+ 
+ 
+  //generateTable()
+
+
+
+//-----------------
+  var s1 =""
+  var s0 =""
+  document.getElementById("myTable").innerHTML="<tr><td>rdp</td><td>send</td> </tr>"
+ 
+//-----------------
+
+
+
+
+  const rdp = ["1","2","3","4","5/"];
+
+
+  //var test_rdp_input="5/123"
+ // var test_send_input="105/106"
+
+
+ var test_rdp_input=document.getElementById("inputrdp").value;
+ var test_send_input=document.getElementById("inputsend").value;
+ 
+     
+ if(test_rdp_input==""||test_send_input=="")
+ return;
+
+  var list_rdp_byfour =""
+  var list_send =""
+
+
+  var count_rdp_by_repo=0;
+  var rdp_index= rdp.indexOf( getfirstrdp(test_rdp_input) ) 
+  var Numberofrepo=12
+  var rdplabel=""
+
+  s1= test_send_input.split('/')[0];
+  s2= test_send_input.split('/')[1];
+
+
+  for (let i = 0; i <Numberofrepo*4; i++) {
+
+    
+
+
+
+
+    list_rdp_byfour+=rdp[rdp_index];
+    rdplabel+=rdp[rdp_index];
+   
+
+   
+
+
+    count_rdp_by_repo++ 
+    rdp_index++ 
+
+
+     if(rdp_index==5){rdp_index=0}
+
+     if(count_rdp_by_repo==4)
+     {
+      
+      list_rdp_byfour+="\n";
+      count_rdp_by_repo=0
+   
+
+
+     if(check_2separator(rdplabel))
+     {
+      
+      
+       list_send+=s1+"/"+s2+"\n";;
+ 
+       s1=s2 ;
+       s2++;
+ 
+ 
+     }else //1234   2345
+     {
+      
+       list_send+=s1+"\n";
+       s1++;
+     }
+
+    
+    
+     var table = document.getElementById("myTable");
+     var row = table.insertRow(-1);
+     var cell1 = row.insertCell(-1);
+     var cell2 = row.insertCell(-1);
+     cell1.innerHTML = rdplabel;
+    
+
+
+    // alert(list_send.split('/')[0]+"--"+list_send.split('/')[1])
+
+     
+
+  if(rdplabel.includes("/")==false)
+  {
+    cell2.innerHTML=list_send.split('/')[0]
+  }
+  else
+  {
+    cell2.innerHTML=list_send 
+  }
+  
+     
+    
+         
+
+     rdplabel=""
+     list_send=""
+    }
+     
+
+
+  }
+
+  
+
+ 
+
+
+
+  //alert(list_rdp_byfour)
+
+
+ //alert(check_separator(test_rdp_input))
+ //get_index_of_firstrdp(rdp,getfirstrdp(test_rdp_input))
+
+
+
+ 
+
+
+
+
+
+
+} 
+
+
+
+ 
+
+
+ 
+ 
+
+ 
+
+
+
+    
+
+
+
+
+
+
+
+ 
+ </script>
+
+</body>
+</html>

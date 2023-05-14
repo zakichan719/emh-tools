@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zakichan</title>
+    <style>
+           body {
+            background-image: url('bg.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            padding-bottom: 30px;
+            color: white;
+           
+
+}
+      input[type="number"] {
+    width: 49px;
+    margin: 5px 13px;
+     }
+
+    textarea{
+      padding-top: 20px;
+      margin: 0 5px;
+      opacity: 0.9;
+     }
+
+    #result button {
+    position: absolute;
+    cursor: pointer;
+}
+
+.footer-end {
+    width: 100%;
+    height: 25px;
+    margin: auto;
+    background: transparent;
+    padding: 4px 40px 25px 5px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+.footer-end p{
+	font-family: 'Roboto Slab', serif;
+	font-size: 16px;
+	text-align: center;
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	letter-spacing: 2px;
+
+}
+.footer-end a{
+
+text-decoration: none;
+color: rgb(255, 255, 255)
+}
+.footer-end a:hover{
+	color:  #2bff00;
+}
+.footer-end{  
+    position: fixed;  
+    bottom: 0;  
+    z-index: 100;  
+}
+ 
+    </style>
+</head>
+
+<body>
+  
+   
+   
+
+<center> 
+<label id="ligns"></label>  <br>
+<textarea   name="" id="textarearandomline" cols="40" rows="30"></textarea>
+      
+<br>   
+<button  onclick="randomline()">parts</button> 
+deploy count<input value="6" max="30" min="1" id="deploycount"  type="number">
+</center>
+
+<center> 
+<div id="result" >
+  <label for="" id="lbl"></label>
+</div>
+</center>
+<div class="footer-end">
+  <p> By: <a href="https://t.me/belkhnati_zakariae">@zakichan</a></p>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
+
+
+ <script> 
+ 
+ function copy(i){
+   var copyText = document.getElementById('textarea'+i).value;
+   navigator.clipboard.writeText(copyText);
+   navigator.clipboard
+      .writeText(copyText)
+      .then(() => {
+        alert("successfully copied deploy "+(i));
+      })
+      .catch(() => {
+        alert("something went wrong deploy "+(i) );
+      });
+}
+      
+
+ function randomline(){
+ 
+
+ 
+
+
+ 
+    var arr = $("#textarearandomline").val().split("\n");
+
+    var arrDistinct = new Array();
+     $(arr).each(function(index, item) {
+         if ($.inArray(item, arrDistinct) == -1)
+                    arrDistinct.push(item);
+     });
+    
+
+ 
+    
+    
+
+  document.getElementById('textarearandomline').value =arrDistinct.join("\n");
+
+
+
+ 
+  var stringArray = document.getElementById('textarearandomline').value.split('\n');
+
+var deploycount = document.getElementById('deploycount').value
+
+
+
+if (stringArray.length < deploycount) {
+    alert("linecount in over tan lines input")
+    return
+}
+if (deploycount > 30) {
+    alert("max value of deploy count is 30 , " + deploycount + " rah bzf hhh ??")
+    return
+}
+if (deploycount < 1) {
+    alert("min value of deploy count is 1   ")
+    return
+}
+
+
+
+document.getElementById('ligns').innerHTML = stringArray.length
+document.getElementById('result').innerHTML="";
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+for (let i = 1; i <= deploycount; i++) {
+
+
+  if(stringArray.length<=1){ 
+  alert("empty")
+   break
+}
+else
+{ 
+/*
+
+let _button = document.createElement("button");
+_button.innerHTML = 'copy for deploy '+(i);
+_button.id="btn"+i
+_button.onclick = function()
+{
+    
+    copy(i);
+
+    
+    
+  
+}
+
+document.getElementById('result').appendChild(_button);
+
+*/
+
+let textarea = document.createElement("textarea");
+textarea.cols=30
+textarea.rows=50
+textarea.id="textarea"+i
+document.getElementById('result').appendChild(textarea);
+ 
+ 
+
+}}
+
+
+
+var mailformat = /^[\w-\.]+@(gmail|googlemail)\.com$/;
+
+var d=1
+
+
+
+for (let i = 0; i < stringArray.length; i++) {
+   
+ 
+  if(stringArray[i]!="" && stringArray[i].match(mailformat)!=null)
+  {
+  document.getElementById('textarea'+d).value += stringArray[i]+"\n";
+  d=d+1
+  if(d>deploycount){
+    d=1;
+  }
+  }
+
+
+
+  }
+}
+ 
+ </script>
+   
+</body>
+</html>
+

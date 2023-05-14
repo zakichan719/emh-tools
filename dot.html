@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add the Bootstrap CSS file -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>•points•</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="text-center mb-5">
+                    <h2>Points</h2>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-dark mr-2" onclick="dotfunction()">Add point to email •</button> 
+                    <button class="btn btn-dark mr-2" onclick="removedots()">Remove points from emails ••</button>
+                    <button class="btn btn-dark" onclick="copy()">Copy result</button> 
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="" id="textarea" cols="60" rows="10" placeholder="user@exemple.com" ></textarea> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add the Bootstrap JS file -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+ 
+
+<script>
+ function removedots() {
+  var newuser = "";
+  var lines = document.getElementById('textarea').value.split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    if (i == lines.length - 1) {
+      newuser += lines[i].split('@')[0].replaceAll(".", "") + "@" + lines[i].split('@')[1];
+    } else {
+      newuser += lines[i].split('@')[0].replaceAll(".", "") + "@" + lines[i].split('@')[1] + "\n";
+    }
+  }
+  document.getElementById('textarea').value = newuser;
+}
+
+function copy() {
+  var input = document.getElementById('textarea').value;
+  navigator.clipboard.writeText(input);
+}
+
+function dotfunction() {
+  var lines = document.getElementById('textarea').value.split('\n');
+  var newinput = "";
+
+  for (let i = 0; i < lines.length; i++) {
+    var email = lines[i];
+    var username = email.split('@')[0];
+    var domain = email.split('@')[1];
+    var dotcount = username.split('.');
+
+    if (((username.length) - dotcount.length) < dotcount.length) {
+      newuser = username;
+    } else {
+      var usernamelength = (username.length) - 1;
+      var rand = Math.floor(Math.random() * usernamelength);
+      var tryname = 0;
+
+      while ((username[rand] == "." || username[rand + 1] == ".") && tryname < usernamelength) {
+        rand = Math.floor(Math.random() * usernamelength);
+
+        if (username[rand] != "." && username[rand + 1] != ".") {
+          break;
+        }
+
+        tryname++;
+      }
+
+      var newuser = "";
+      for (let j = 0; j < usernamelength + 1; j++) {
+        if (j == rand) {
+          newuser += (username[j] + ".").replace("..", ".");
+        } else {
+          newuser += username[j];
+        }
+      }
+    }
+
+    if (i == lines.length - 1) {
+      newinput += newuser.replace("..", ".") + "@" + domain;
+    } else {
+      newinput += newuser.replace("..", ".") + "@" + domain + "\n";
+    }
+  }
+  document.getElementById('textarea').value = newinput;
+}
+
+</script>
+</body>
+</html>

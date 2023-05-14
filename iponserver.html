@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ip from server</title>
+    <style>
+           body {
+    background-color: aliceblue;
+}
+      input[type="number"] {
+    width: 49px;
+    margin: 5px 13px;
+     }
+
+     textarea{
+      padding-top: 20px;
+     }
+#result button {
+    position: absolute;
+}
+
+.footer-end {
+    width: 100%;
+    height: 25px;
+    margin: auto;
+    background: transparent;
+    padding: 4px 40px 25px 5px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    text-align: center;
+}
+.footer-end p{
+	font-family: 'Roboto Slab', serif;
+	font-size: 16px;
+	text-align: center;
+	color: rgb(0, 0, 0);
+	font-weight: bold;
+	letter-spacing: 2px;
+
+}
+.footer-end a{
+
+text-decoration: none;
+color: rgb(0, 0, 0)
+}
+.footer-end a:hover{
+	color:  #2bff00;
+}
+.footer-end{  
+    position: fixed;  
+    bottom: 0;  
+    z-index: 100;  
+}
+    </style>
+
+ 
+</head>
+
+<body>
+  
+   
+   
+
+<center> 
+<span  >ip from server :</span><label id="ligns"></label>  <br>
+<textarea     name="" id="textarea" cols="35" rows="30"  placeholder="s_emh_xxxx:00.00.00.00"></textarea>
+      
+<br>   
+<button onclick="parts()">parts</button> 
+ 
+ipsPerServer <input value="1" max="10000" min="1" id="ipsPerServer"  type="number">
+deploy count<input value="6" max="30" min="1" id="deploycount"  type="number">
+</center>
+
+<center> 
+<div id="result" ></div>
+</center>
+ 
+ <div class="footer-end">
+  <p> By: <a href="https://t.me/belkhnati_zakariae">@zakichan</a></p>
+</div>
+
+
+ <script>
+ function parts(){
+  var ips=[] ;
+  var ipfromserver =[] ;
+  var lines=document.getElementById('textarea').value.split('\n');
+  var ipsPerServer = parseInt(document.getElementById('ipsPerServer').value);
+  var servers = {};
+  
+  for (let i = 0; i < lines.length; i++) {
+    var parts = lines[i].split(':');
+    var server = parts[0];
+    var ip = parts[1];
+    
+    if (!servers[server]) {
+      servers[server] = [];
+    }
+    
+    if (ip) {
+      servers[server].push(ip);
+    }
+  }
+  
+  Object.keys(servers).forEach(function(server) {
+    var serverIps = servers[server];
+    var numIps = serverIps.length;
+    if (numIps > 0) {
+      var numToSelect = (numIps >= ipsPerServer) ? ipsPerServer : numIps;
+      for (let i = 0; i < numToSelect; i++) {
+        const randomIndex = Math.floor(Math.random() * serverIps.length);
+        ipfromserver.push(serverIps[randomIndex]);
+        serverIps.splice(randomIndex, 1);
+      }
+    }
+  });
+  
+  var deployCount = parseInt(document.getElementById('deploycount').value);
+  
+  if (ipfromserver.length < deployCount) {
+    alert("Not enough IP addresses for number of deployments specified.");
+    return;
+  }
+  
+  document.getElementById('result').innerHTML="";
+  document.getElementById('ligns').innerHTML=ipfromserver.length;
+  
+  for (let i = 1; i <= deployCount; i++) {
+    let button = document.createElement("button");
+    button.innerHTML = 'Copy for Deploy ' + i;
+    button.id = "btn" + i;
+    button.onclick = function() {
+      copy(i);
+    }
+    document.getElementById('result').appendChild(button);
+  
+    let textarea = document.createElement("textarea");
+    textarea.cols=30
+    textarea.rows=50
+    textarea.id="textarea"+i
+    document.getElementById('result').appendChild(textarea);
+  }
+  
+  var deployIndex = 0;
+  for (let i = 0; i < ipfromserver.length; i++) {
+    if (deployIndex >= deployCount) {
+      deployIndex = 0;
+    }
+    document.getElementById('textarea' + (deployIndex + 1)).value += ipfromserver[i] + "\n";
+    deployIndex++;
+  }
+}
+
+ </script>
+
+</body>
+</html>

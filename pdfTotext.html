@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PDF to Text</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+        #result {
+            margin-top: 30px;
+            font-size: 16px;
+            font-family: monospace;
+        }
+
+        .spinner {
+          width: 40px;
+          height: 40px;
+          margin: 100px auto;
+          background-color: #333;
+          display: none;
+        
+          /* This creates the spinning animation */
+          animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PDF to Text Converter</h1>
+         <h5>Also remove domains and special character </h5>
+         <br>
+        <div class="row">
+            <!--div class="col-md-4">
+                <div class="mb-3">
+                    <label for="wordsinlign" class="form-label">Count Words in Line:</label>
+                    <input type="text" class="form-control" id="wordsinlign" value="5" placeholder="Count Words in Line">
+                </div>
+            </div-->
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="lignsinfile" class="form-label">Count Lines in File:</label>
+                    <input type="number" class="form-control" id="lignsinfile" value="10" placeholder="Count Lines in File">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="pdffile" class="form-label">Select PDF Files:</label>
+                    <input type="file" class="form-control" id="pdffile" name="pdffile" multiple>
+                </div>
+            </div>
+        </div>
+        <button id="btn" class="btn btn-primary" onclick="convert()">Convert </button>
+        <div id="loading" class="spinner" ></div>
+        <div id="result"></div>
+    </div>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script>
+        function todayforma() {
+            const today = new Date();
+            const day = today.getDate().toString().padStart(2, '0');
+            const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Add 1 because January is 0
+            const year = today.getFullYear().toString();
+            const hours = today.getHours().toString().padStart(2, '0');
+            const minutes = today.getMinutes().toString().padStart(2, '0');
+            const seconds = today.getSeconds().toString().padStart(2, '0');
+            const fileName = `${day}.${month}.${year}.${hours}.${minutes}.${seconds}`;
+            return fileName;
+        }
+    
+        function convert() {
+
+          document.getElementById("loading").style.display = "block";
+          var lignsinfile = parseInt(document.getElementById('lignsinfile').value);
+          var wordsinlign = Math.floor(Math.random() * (12 - 7 + 1)) + 7;
+        
+          const files = document.getElementById('pdffile').files;
+          const pdf2text = new Pdf2TextClass();
+          pdf2text.pdfToText(files, function(text) {
+        
+            // Remove URLs/domains
+            text = text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+        
+            // Remove special characters
+            text = text.replace(/[^0-9a-zA-Z ]+/g, ' ');
+        
+            const words = text.split(/\s+/);
+        
+            let content = "";
+            let w = 0;
+            let l = 0;
+            let n = 1;
+            let zip = new JSZip();
+            let folder = zip.folder("text-files");
+        
+            for (let i = 0; i < words.length; i++) {
+              content += words[i] + " ";
+              w++;
+        
+              if (w == wordsinlign) {
+                content += "\n";
+                w = 0;
+                wordsinlign= Math.floor(Math.random() * (11 - 7 + 1)) + 7;
+        
+                l++;
+        
+                if (l == lignsinfile) {
+                  folder.file(`text-${n}-${todayforma()}.txt`, content);
+                  n++;
+                  l = 0;
+                  content = "";
+                }
+              }
+            }
+        
+            if (content.length > 0) {
+              folder.file(`text-${n}-${todayforma()}.txt`, content);
+            }
+        
+            zip.generateAsync({type:"blob"}).then(function(content) {
+              if (confirm("Conversion completed successfully. Do you want to download the file now?")) {
+                saveAs(content, "textfiles"+todayforma()+".zip");
+                document.getElementById("loading").style.display = "none";
+            }
+            });
+          });
+        }
+        
+      
+        function Pdf2TextClass() {
+          this.pdfToText = function(files, callback) {
+            let total = files.length;
+            let complete = 0;
+            let layers = {};
+            
+            for (let j = 0; j < files.length; j++) {
+              const file = files[j];
+              const reader = new FileReader();
+              
+              reader.onload = function() {
+                const loadingTask = pdfjsLib.getDocument(reader.result);
+                
+                loadingTask.promise.then(function(pdf) {
+                  let numPages = pdf.numPages;
+                  let pageNumber = 1;
+                  
+                  pdf.getPage(pageNumber).then(function(page) {
+                    page.getTextContent().then(function(textContent) {
+                      let pageText = "";
+                      
+                      for (let i = 0; i < textContent.items.length; i++) {
+                        const item = textContent.items[i];
+                        pageText += item.str;
+                      }
+                      
+                      layers[j] = pageText;
+                      
+                      complete++;
+                      if (complete == total) {
+                        let fullText = "";
+                        
+                        for (let k = 0; k < total; k++) {
+                          if(layers[k] !== undefined){
+                              fullText += layers[k];
+                          }
+                        }
+                        
+                        callback(fullText);
+                      }
+                    });
+                  });
+                }).catch(function(error) {
+                    console.log(`Error loading PDF: ${error.message}`);
+                    complete++;
+                    if (complete == total) {
+                        let fullText = "";
+                        for (let k = 0; k < total; k++) {
+                            if(layers[k] !== undefined){
+                                fullText += layers[k];
+                            }
+                        }
+                        callback(fullText);
+                    }
+                });
+              };
+              
+              reader.readAsArrayBuffer(file);
+            }
+          };
+        }
+       
+        function saveToFile(text, filename) {
+          const element = document.createElement('a');
+          element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+          element.setAttribute('download', filename);
+          element.style.display = 'none';
+          document.body.appendChild(element);
+          element.click();
+          document.body.removeChild(element);
+        }
+
+
+        function saveAs(blob, filename) {
+          if (typeof navigator.msSaveOrOpenBlob !== 'undefined') {
+              navigator.msSaveOrOpenBlob(blob, filename);
+          } else {
+              const link = document.createElement('a');
+              if (typeof link.download !== 'undefined') {
+                  const url = URL.createObjectURL(blob);
+                  link.setAttribute('href', url);
+                  link.setAttribute('download', filename);
+                  link.style.visibility = 'hidden';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+              }
+          }
+      }
+    </script>
+</body>
+</html>

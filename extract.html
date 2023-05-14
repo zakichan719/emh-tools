@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+   #input
+   {
+    width:100%;
+   } 
+
+ #resul_disable {
+    background-color: rgb(237 100 100 / 9%);
+   } 
+ #resul_not_found {
+    background-color:rgb(222 234 255 / 35%);
+   } 
+ #resul_valid {
+    background-color: rgb(60 255 0 / 10%);
+   } 
+</style>
+</head>
+<body>
+   <textarea name="" id="input"   rows="10">
+    
+   </textarea>  <br>
+   <button onclick="result()" >result</button>
+   
+   <center>
+ 
+    <textarea   name="" id="resul_disable" cols="50" rows="47">
+
+    </textarea>
+  
+ 
+   <textarea name="" id="resul_not_found" cols="50" rows="47">
+
+</textarea>
+ 
+<textarea name="" id="resul_valid" cols="50" rows="47">
+
+</textarea>
+ </center>
+
+
+ 
+ 
+
+ <script> 
+ 
+     
+      
+
+        function result (text)
+        {
+
+
+var input = document.getElementById('input').value;
+var lines = input.split('\n');
+var disabled="";
+var valid="";
+var notfound="";
+
+
+
+for (let i = 0; i < lines.length; i++) {
+  
+  if(lines[i].includes("Valid and Safe"))
+  {
+    valid+=  lines[i].match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi)+" \n";
+  }
+  else   if(lines[i].includes("each is disabled"))
+  {
+    disabled+=  lines[i].match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi)+" \n";
+  }
+  else   if(lines[i].includes("not exist"))
+  {
+    notfound+=  lines[i].match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi)+" \n";
+  }
+
+}
+
+ 
+
+document.getElementById('resul_disable').value=disabled;
+document.getElementById('resul_not_found').value=notfound;
+document.getElementById('resul_valid').value=valid;
+ 
+           
+        }
+
+       
+ 
+ 
+ </script>
+   
+</body>
+</html>

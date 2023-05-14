@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>check server status</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			padding:60px;
+		}
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
+		textarea {
+			width: 100%;
+			height: 100px;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-sizing: border-box;
+		}
+		.buttoncompare {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+            margin: 10px 0;
+		}
+		.buttoncompare:hover {
+			background-color: #3e8e41;
+		}
+
+
+
+        .buttoncopy {
+			background-color: #00a2ff;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+            margin: 10px 0;
+		}
+		.buttoncopy:hover {
+			background-color: #00a2ff;
+		}
+
+
+
+
+		.result {
+			margin-top: 10px;
+			padding: 5px;
+			border-radius: 5px;
+			box-sizing: border-box;
+		}
+		.ok {
+			background-color: #c8e6c9;
+			color: #2e7d32;
+			border: 1px solid #81c784;
+		}
+		.bounce {
+			background-color: #df7700;
+			color: #ffffff;
+			border: 1px solid #e57373;
+		
+		}
+		
+.erreur {
+    background-color: #020000;
+    color: #ffffff;
+    border: 1px solid #000000;
+}	
+		
+		.timeout {
+    background-color: #00b8ff;
+    color: #ffffff;
+    border: 1px solid #00b8ff;
+}
+
+
+.zero{
+    
+    border: 1px solid #000000;
+}
+
+span {
+    font-size: x-small;
+}
+	
+#errfill {
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+
+.alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background-color: #00a2ff;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    
+   
+  }
+  
+  
+	</style>
+</head>
+<body>
+    
+    <div class="container">
+	<h1>check server status </h1>
+	<label>Text:</label>
+	<textarea id="text" placeholder="s_emh_xxx	xxx	xxx"></textarea>
+	<button class="buttoncompare" onclick="compare()">check</button>
+    <button class="buttoncopy" onclick="copyResultsToClipboard()">Copy servers not ok</button>
+    <label>flexible out:  <span> (0  is mean IN be should equal OUT) </span>  </label>
+    <input type="number" id="flexibleout" value="0" name=""  >
+
+ 
+	<div id="result" class="result"></div>
+	 </div>
+	
+	
+	<script>
+
+        function copyResultsToClipboard() {
+            var divs = document.querySelectorAll("div");
+            var results = "";
+          
+            for (var i = 0; i < divs.length; i++) {
+              var input = divs[i].querySelector("input");
+              var inputText = input ? input.value : "";
+              var divText = divs[i].innerText;
+          
+              if (!divText.includes("ok")) {
+                results +=  divText+" "+inputText + "\n";
+              }
+            }
+          
+            navigator.clipboard.writeText(results);
+
+            // Add fade-in/fade-out effect to alert message
+            var alertMsg = document.createElement("div");
+            alertMsg.innerText = "Results copied .";
+            alertMsg.className = "alert";
+            document.body.appendChild(alertMsg);
+            
+            setTimeout(function() {
+              alertMsg.remove();
+            }, 2000);
+           
+          }
+
+
+  function compare() {
+    var flexibleout = document.getElementById("flexibleout").value;
+
+    if(flexibleout<0||flexibleout=="")
+    {
+        document.getElementById("flexibleout").value=0;
+    }
+
+    var text = document.getElementById("text").value.trim();
+    var lines = text.split("\n");
+    var output = [];
+    
+    for (var i = 0; i < lines.length; i++) {
+      var parts = lines[i].split(/\s+/);
+      
+       var server = parts[0];
+     
+      var secondPart = parts[1];
+       var lastPart = parts[2];
+      var result, className;
+      
+      
+      // Check if the first letter of the server variable is "s"
+      if (server.charAt(0) !== "s") {
+        continue; // Skip to the next iteration of the loop
+      }
+      
+       
+      
+      if (parts.length===1||(secondPart === ""||lastPart === "")  ) {
+        result = "TIME OUT ";
+        className = "timeout";
+      } 
+       else
+      if (secondPart === "0"&&lastPart === "0") {
+        result = "0 0";
+        className = "zero";
+      } 
+     else
+      if (lastPart === "0") {
+        result = "BOUNCE";
+          result = "IN:"+secondPart+ " OUT:" +lastPart +" => BOUNCE ";
+        className = "bounce";
+      } 
+       else if ((lastPart === secondPart)&&flexibleout==0) {
+        
+          result = "ok IN:"+secondPart+ " OUT:" +lastPart ;
+        className = "ok";
+      } 
+      else if (((secondPart-lastPart)<=flexibleout)&&flexibleout!=0) {
+        
+        
+        result = "ok IN:"+secondPart+ " OUT:" +lastPart ;
+      className = "ok";
+    } 
+     
+      else {
+        result = "IN:"+secondPart+ " OUT:" +lastPart +" => ERREUR: ";
+        className = "erreur";
+      }
+      
+      output.push({
+        server: server,
+        result: result,
+        className: className
+      });
+    }
+    
+    // Sort the output array by the value of the result
+    output.sort(function(a, b) {
+      var resultA = a.result.toUpperCase();
+      var resultB = b.result.toUpperCase();
+      if (resultA < resultB) {
+        return -1;
+      }
+      if (resultA > resultB) {
+        return 1;
+      }
+      return 0;
+    });
+    
+    // Generate the HTML output
+    var htmlOutput = "";
+    for (var i = 0; i < output.length; i++) {
+    
+      
+      if (output[i].result.includes("ERREUR")) {
+        htmlOutput += '<div class="' + output[i].className + '">' + output[i].server + " " + output[i].result + '  <input type="text" id="errfill" placeholder="erreur" value=""  >   </div>';
+      }else{
+        htmlOutput += '<div class="' + output[i].className + '">' + output[i].server + " " + output[i].result + '</div>';
+
+      }
+
+
+    }
+    
+    document.getElementById("result").innerHTML = htmlOutput;
+  }
+</script>
+
+
+</body>
+</html>
