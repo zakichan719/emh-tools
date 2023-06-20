@@ -6,7 +6,6 @@ https://zakichan719.github.io/emh-tools/
  
 ### Extract IP/domain🌐,random Lines📜🔀
 ### Domain Info (demarc,spf,listed ..)🔍📊📈
-### check bulk BlackList (Spamhaus ...)📊
 ### Parts,Filter Email Tools: 💌
 ### Server Status 🖥️
 ### N.K By Server
