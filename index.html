@@ -4,290 +4,261 @@
 	<title>zakichan</title>
 	<!-- Include Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	 <!-- Font Awesome Icons -->
- <meta charset="utf-8">
- 
- 
- <style>
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<meta charset="utf-8">
+	<style>
+		/* Global Styles */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
 
-  a {
-    color: #009ce7;
-    text-decoration: none;
-   
-  }
+		/* Header */
+		.navbar {
+			background-color: #f8f9fa;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+		}
 
-  a:hover {
-   color: #073b60;
-     text-decoration: none;
-  }
-  
-a.navbar-brand {
-    margin-left: 4%;
-    margin-right: 2%;
-}
-#sidebar {
-    height: 100%;
+		.navbar-brand , .navbar-light .navbar-brand {
+			 
+			margin-left: 5%;
+		margin-right: 2%;
+		 
+		font-size: unset;
+		font-family: math;
+		}
+
+		 .navbar-brand:hover , .navbar-light .navbar-brand:hover {
+			 
+		color: #ff8900;
+		 
+		}
+
+		/* Sidebar */
+		#sidebar {
+			height: 100%;
+			position: fixed;
+			top: 55px;
+			left: -356px;
+			padding-left: 23px;
+			padding-right: 20px;
+			background-color: #f8f9fa;
+			transition: left 0.5s;
+		}
+
+		#sidebar.show {
+			left: 0;
+		}
+
+		#sidebar2 {
+			height: 100%;
+			position: fixed;
+			top: 55px;
+			right: -356px;
+			padding-left: 23px;
+			padding-right: 20px;
+			background-color: #f8f9fa;
+			transition: right 0.5s;
+		}
+
+		#sidebar2.show2 {
+			right: 0;
+		}
+
+		.btntoggle1 {
     position: fixed;
-    top: 55px;
-    left: -356px;
-    padding-left: 23px;
-    padding-right: 20px;
-    transition: left 0.5s;
-}
-#sidebar.show {
-	left: 0;
-}
-#sidebar2 {
-    height: 100%;
-    position: fixed;
-    top: 55px;
-    right: -356px;
-    padding-left: 23px;
-    padding-right: 20px;
-    transition: right 0.5s;
-}
-#sidebar2.show2 {
-	right: 0; 
-}
-
-.btntoggle1 {
-	position: fixed;
-	top: 10px;
-	left: 10px;
-	border-radius:40%;
-	 
-    cursor: pointer;    
-}
-.btntoggle2 {
-	position: fixed;
-	top: 10px;
-	right: 10px;
-	border-radius:40%;
-	 
-    cursor: pointer;    
-}
-
-button.btn.gradient.w-100.mt-4.mb-0 {
-    background-color: #281919d1;
+    top: 10px;
+    left: 10px;
+    border-radius: 14%;
+    cursor: pointer;
+    background-color: black;
+    padding: 3px;
     color: white;
 }
-
-@media (max-width: 991px) {
-	#sidebar {
-		width: 300px;
-	}
-	#sidebar.show {
-		left: 0;
-	}
-
-    #sidebar2 {
-		width: 300px;
-	}
-	#sidebar2.show2 {
-		right: 0;
-	}
+.btntoggle1 a {
+    color: white;
+    text-decoration: none;
 }
- </style>
+
+		 
+			.btntoggle2 {
+    position: fixed;
+    top: 51px;
+    right: 10px;
+    border-radius: 40%;
+    cursor: pointer;
+	z-index:100;
+}
+		 
+
+		/* Content */
+		.container-fluid {
+			margin-top: 20px;
+		}
+
+		/* Footer */
+		.footer {
+			background-color: #f8f9fa;
+			padding: 10px 0;
+		}
+
+		.footer .tag {
+			color: #009ce7;
+			text-decoration: none;
+		}
+
+		.footer .tag:hover {
+			color: #073b60;
+		}
+	</style>
 </head>
 <body>
 
 	<!-- Header -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <a class="navbar-brand" href="https://t.me/belkhnati_zakariae">💯 zakichan  </a>
-	   
-	  <div class="collapse navbar-collapse" id="navbarNav">
-	    <ul class="navbar-nav">
-	    <div class="msg-info"></div>
-	    </ul>
-	  </div>
+	 	<a class="navbar-brand  " href="https://t.me/belkhnati_zakariae">By Zakichan
+		<i class="fab fa-telegram"></i>
+		
+		</a> 
+		 
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<div class="msg-info"></div>
+				</li>
+			</ul>
+		</div>
 	</nav>
 
 	<div class="container-fluid">
 		<div class="row">
 
-			<!-- Iframe Column -->
-			<div class="col-md-12">
-				<iframe id="myIframe" src="pages/extractip.html" style="border:none;height:1000px;width:100%;"></iframe>
+			<!-- Content -->
+			<div class="col-lg-12">
+				 
+             <iframe id="myIframe" src="pages/extractip.html"
+			  style="border:none;height:100vh;width:100%; border-radius:10px"></iframe>
+    
 			</div>
 
-			<!-- Sidebar Column -->
-	  	<div class="  bg-light show" id="sidebar">
-	  	      <button class="btntoggle1" onclick="toggleSidebar()">🔗</button>
-                <button class="btntoggle2" onclick="toggleSidebar2()">📝</button>
+			<!-- Sidebar 1 Toggle Button -->
+			<div class="btntoggle1" onclick="toggleSidebar()">
+				<a href="#" class="tag"><i class="fas fa-toolbox"></i>-Tools</a>
+			</div>
 
-			<ul>
-			    	    <h3>----</h3>
-		    <li><a class="alink" 
+			<!-- Sidebar 1 -->
+			<div id="sidebar">
+				<h5>Tools</h5>
+				<ul>
+					  <li><a class="alink" 
 		    data-desc="🌐 extract IP addresses and domain names from text,🎲 generate random strings,🔀  Shuffles the lines, and (📋) copies the results automatically "
-		    href="#" data-src="https://zakichan719.github.io/emh-tools/pages/extractip.html"  >Extract IP/domain🌐,random Lines📜🔀  </a></li>
+		    href="#" data-src="pages/extractip.html"  >Extract IP/domain,random Lines  </a></li>
 		
 		
 			<li><a class="alink"
 			data-desc="🔍   important information about a domain including DMARC and SPF records, blacklist status,check  in Talos and other relevant details with Domain Info  📊📈" 
-			href="#" data-src="https://zakichan719.github.io/emh-tools/pages/domaininfo.html"  >Domain Info (demarc,spf,listed ..)🔍📊📈</a></li>
+			href="#" data-src="pages/domaininfo.html"  >Domain Info (demarc,spf,listed ..) </a></li>
 		   
- 	<li><a class="alink" 
- 	data-desc="🔍 Batchblacklist.com is a website that allows users to check the blacklist status of bulk lists of domains or IP addresses." 
- 	href="#" data-src="https://batchblacklist.com/home"  >check bulk BlackList (Spamhaus ...)📊</a></li>
+  
 		
 		
 		
 		  <li> <a class="alink" 
 		  data-desc="✉️ This tool separates emails into parts based on the deploy count, 🗑️ removes duplicate and invalid email addresses, and filters only email addresses with ISPs Gmail and Googlemail."
-		  href="#" data-src="https://zakichan719.github.io/emh-tools/emailparts.html" >Parts,Filter Email Tools: 💌 </a></li> 
-		 
+		  href="#" data-src="emailparts.html" >Parts,Filter Email Tools: 📧 </a></li> 
+
+
+		  <li> <a class="alink" 
+			data-desc="tool for extract all email addresses from a file they upload" 
+			href="#" data-src="extracfromfile.html" >extract Emails from file </a></li>
+		  <li><a class="alink" 
+			data-desc="🛠 tool that converts PDF files to text, 📄 cleans up the text by removing URLs and special characters, Users can easily adjust the number of lines displayed to their liking, and then download the resulting text files as a convenient ZIP archive. 📥" 
+			href="#" data-src="pdfTotext.html"  >PDFs to Text Converter </a> </li>
+  
+			<li> <a  class="alink"
+				data-desc="✉️ tools for add or remove dots in email addresses. and copy the result"
+				href="#" data-src="dot.html" >add/remove points in email</a></li>
+
 		  <li> <a  class="alink" 
 		  data-desc="tool that checks server status based on user-inputted information and displays the results. Users can copy information of servers that are not okay and write error messages." 
-		  href="#" data-src="serverstatus.html" >Server Status 🖥️ </a></li>
+		  href="#" data-src="serverstatus.html" >Server Status 🖥 </a></li>
 		  
 		  
 		  
 	           <li> <a  class="alink" 
 	           data-desc="tool helps when you have a list of servers, but each server has different charging data numbers , The tool allows you to extract the IP of a server based on its charging data number." 
-	           href="#" data-src="https://zakichan719.github.io/emh-tools/ipparted.html" >N.K By Server</a></li>
+	           href="#" data-src="ipparted.html" >N.K By Server</a></li>
 		  
-	         <li><a class="alink" 
-	         data-desc="🛠 tool that converts PDF files to text, 📄 cleans up the text by removing URLs and special characters, Users can easily adjust the number of lines displayed to their liking, and then download the resulting text files as a convenient ZIP archive. 📥" 
-	         href="#" data-src="https://zakichan719.github.io/emh-tools/pdfTotext.html"  >PDFs to Text Converter 📄➡️📝</a> </li>
 	         
-	          <li> <a  class="alink"
-	          data-desc="✉️ tools for add or remove dots in email addresses. and copy the result"
-	          href="#" data-src="https://zakichan719.github.io/emh-tools/dot.html" >📧 add/remove points in email</a></li>
+	       
 	          
 	          
-	         	<li> <a class="alink" 
-	         	data-desc="tool for extract all email addresses from a file they upload" 
-	         	href="#" data-src="https://zakichan719.github.io/emh-tools/extracfromfile.html" >extract Emails from file 📁📧🔍</a></li>
+	         	
 	         	
 	         	
 	         	    <li> <a class="alink" 
 	         	    data-desc="splitting a list of email addresses into usernames and domains" 
-	         	    href="#" data-src="https://zakichan719.github.io/emh-tools/usersplite.html" >split username from Emails📧👤</a></li>
+	         	    href="#" data-src="usersplite.html" >split username from Emails</a></li>
 	         	    
 	         	    
 	         	    <li> <a class="alink"
             data-desc="This tool helps to extract IP addresses from servers. However, the syntax of the server should be in the format 's_emh_xxxx:00.00.00.00'"
-            href="#" data-src="https://zakichan719.github.io/emh-tools/iponserver.html" >🌐 ips from server</a></li>
+            href="#" data-src="iponserver.html" >ips from server</a></li>
 	         	    
 	         	    <h3>----</h3>
 	         	    
            <li><a class="alink" 
            data-desc="tool allows you to merge all uploaded text files into a single file and separate the content of each text file using the __sep__ .
            Additionally, it provides a button to shuffle the content of the file based on the _sep_ ."
-           href="#" data-src="https://zakichan719.github.io/emh-tools/negatives/index.html"  >negatives files 📁</a> </li>
+           href="#" data-src="negatives/index.html"  >negatives files </a> </li>
            
             <li> <a  class="alink" 
             data-desc="This tool is based on a list of servers. Users can select lines used from the list . by clicking on the 'shuffle' button ,
             The selected lines are then divided into sections based on the deploy count, and each section is shuffled randomly."
-            href="#" data-src="https://zakichan719.github.io/emh-tools/serversparts.html" >multi shuffle 🔀 parts</a></li>
+            href="#" data-src="serversparts.html" >multi shuffle  parts</a></li>
             
             
 		
             <li> <a class="alink" 
              data-desc=" tool filters out valid, disabled, and notfound email addresses from a result ! of  obtained from another application ..."
-            href="#" data-src="https://zakichan719.github.io/emh-tools/extract.html" >extract from ResultApp 1</a></li>  
+            href="#" data-src="extract.html" >extract from ResultApp 1</a></li>  
             
              <li> <a class="alink"  
               data-desc="tool filters out valid  from a result !    obtained from another application ..."
-             href="#" data-src="https://zakichan719.github.io/emh-tools/extractApp.html" >extract from ResultApp 2</a></li>  
+             href="#" data-src="extractApp.html" >extract from ResultApp 2</a></li>  
         
             <li> <a class="alink"  
              data-desc="tool to extract source code from a list of domains, select a random domain, and fetch its source code. It also has features to extract headers and footers from the source code and clear selected domains from the input list."
-            href="#" data-src="https://zakichan719.github.io/emh-tools/multiweb.html" >🕸 extract Sourcecode from domains </a></li>
-           
-		
-		 
-
+            href="#" data-src="multiweb.html" >extract Sourcecode from domains </a></li>
 				</ul>
 			</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="  bg-light show2" id="sidebar2">
-	  	    
-				<h3>notepad</h3>
-		 <textarea name="" id="myTextarea" cols="30" rows="10"></textarea>
-		 
-
-				 
+			<!-- Sidebar 2 Toggle Button -->
+			<div class="btntoggle2" onclick="toggleSidebar2()">
+				<a href="#">Notes    <i class="fas fa-edit fa-lg"></i></a>
 			</div>
 
-
-
-
-
-
-
-
-
-
-
+			<!-- Sidebar 2 -->
+			<div id="sidebar2">
+				<h5>Notes</h5>
+				<textarea id="notes" rows="18"></textarea>
+			</div>
 
 		</div>
 	</div>
 
-
-
-
-
-
-
-  <footer class="footer pt-3" style="position: fixed; bottom: 0; width: 100%;">
-  <div class="container-fluid">
-    <div class="row align-items-center justify-content-lg-between">
-      <div class="col-lg-6 mb-lg-0 mb-4">
-        <div class="copyright text-center text-sm text-muted text-lg-start">
-          ©
-          <script>
-            document.write(new Date().getFullYear())
-          </script>,
-          made with <i class="fa fa-heart"></i> by
-          <a href="https://t.me/belkhnati_zakariae" class="tag" target="_blank">EMH @belkhnati_zakariae</a>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</footer>
-
-
-
-
-
-
-
-
-
-
-
-
 	<!-- Include Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	 
+
 	<script>
 	
- 		function toggleSidebar() {
-	document.getElementById("sidebar").classList.toggle("show");
-}
-
-
-function toggleSidebar2() {
-	document.getElementById("sidebar2").classList.toggle("show2");
-}
-
+	
+	
+	
+	
 $(document).ready(function(){
 	$(".alink").click(function(e){
 		e.preventDefault();
@@ -295,7 +266,7 @@ $(document).ready(function(){
 		$("#myIframe").attr("src", src);
 		let desc = $(this).data("desc");
         	document.getElementById("sidebar").classList.toggle("show");
-            document.getElementById("sidebar2").classList.toggle("show2");
+           
 	 
 			$(".msg-info").text(desc);
 		 
@@ -305,22 +276,46 @@ $(document).ready(function(){
 	
 	
 	
-	 
 	
-	// Get the textarea element
-var myTextarea = document.getElementById("myTextarea");
-
-// Load saved text from localStorage, if any
-myTextarea.value = localStorage.getItem("myTextareaValue");
-
-// Save the text in localStorage every time the user types something in the textarea
-myTextarea.addEventListener("input", function() {
-    localStorage.setItem("myTextareaValue", myTextarea.value);
-});
- 
-		
-
 	
+	
+	
+	
+	
+	
+	
+	
+	
+		$(document).ready(function() {
+			// Load saved notes from localStorage
+			var savedNotes = localStorage.getItem("notes");
+			if (savedNotes) {
+				$("#notes").val(savedNotes);
+			}
+
+			// Save notes when user finishes editing
+			$("#notes").on("input", function() {
+				var notes = $(this).val();
+				localStorage.setItem("notes", notes);
+			});
+		});
+
+		function toggleSidebar() {
+			$("#sidebar").toggleClass("show");
+		}
+
+		function toggleSidebar2() {
+			$("#sidebar2").toggleClass("show2");
+		}
 	</script>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<p>Designed and developed by <a class="tag" href="https://t.me/belkhnati_zakariae">zakariae belkhnati</a></p>
+		</div>
+	</footer>
+	
+
 </body>
 </html>
