@@ -23,7 +23,7 @@
 
 		.navbar-brand , .navbar-light .navbar-brand {
 			 
-			margin-left: 5%;
+			margin-left: 6%;
 		margin-right: 2%;
 		 
 		font-size: unset;
@@ -59,7 +59,7 @@
 			right: -356px;
 			padding-left: 23px;
 			padding-right: 20px;
-			background-color: #f8f9fa;
+			background-color: #62afb700;;
 			transition: right 0.5s;
 		}
 
@@ -67,21 +67,25 @@
 			right: 0;
 		}
 
-		.btntoggle1 {
+.btntoggle1 {
     position: fixed;
     top: 10px;
     left: 10px;
-    border-radius: 14%;
+    border-radius: 9%;
     cursor: pointer;
-    background-color: black;
-    padding: 3px;
+    background-color: #080c0c;
+    padding: 4px;
     color: white;
 }
 .btntoggle1 a {
     color: white;
     text-decoration: none;
 }
-
+textarea#notes {
+    margin-top: 32px;
+    border-radius: 45px;
+    padding: 19px;
+}
 		 
 			.btntoggle2 {
     position: fixed;
@@ -115,10 +119,10 @@
 	</style>
 </head>
 <body>
-
+ 
 	<!-- Header -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	 	<a class="navbar-brand  " href="https://t.me/belkhnati_zakariae">By Zakichan
+	 	<a class="navbar-brand  " href="https://t.me/belkhnati_zakariae">Contact us
 		<i class="fab fa-telegram"></i>
 		
 		</a> 
@@ -138,18 +142,17 @@
 			<!-- Content -->
 			<div class="col-lg-12">
 				 
-             <iframe id="myIframe" src="pages/extractip.html"
-			  style="border:none;height:100vh;width:100%; border-radius:10px"></iframe>
+             <iframe id="myIframe" src="pages/extractip.html" style="border:none;height:100vh;width:100%; border-radius:10px"></iframe>
     
 			</div>
 
 			<!-- Sidebar 1 Toggle Button -->
 			<div class="btntoggle1" onclick="toggleSidebar()">
-				<a href="#" class="tag"><i class="fas fa-toolbox"></i>-Tools</a>
+				<a href="#" class="tag"><i class="fas fa-toolbox"></i>. Tools list</a>
 			</div>
 
 			<!-- Sidebar 1 -->
-			<div id="sidebar" class="show">
+			<div id="sidebar">
 				<h5>Tools</h5>
 				<ul>
 					  <li><a class="alink" 
@@ -159,28 +162,16 @@
 		
 			<li><a class="alink"
 			data-desc="🔍   important information about a domain including DMARC and SPF records, blacklist status,check  in Talos and other relevant details with Domain Info  📊📈" 
-			href="#" data-src="pages/domaininfo.html"  >Domain Info (demarc,spf,listed ..) </a></li>
+			href="#" data-src="pages/domaininfo.html"  >Domain Info (demarc,spf,listed ..)🔍</a></li>
 		   
-  
+ 
 		
 		
 		
 		  <li> <a class="alink" 
 		  data-desc="✉️ This tool separates emails into parts based on the deploy count, 🗑️ removes duplicate and invalid email addresses, and filters only email addresses with ISPs Gmail and Googlemail."
-		  href="#" data-src="emailparts.html" >Parts,Filter Email Tools: 📧 </a></li> 
-
-
-		  <li> <a class="alink" 
-			data-desc="tool for extract all email addresses from a file they upload" 
-			href="#" data-src="extracfromfile.html" >extract Emails from file </a></li>
-		  <li><a class="alink" 
-			data-desc="🛠 tool that converts PDF files to text, 📄 cleans up the text by removing URLs and special characters, Users can easily adjust the number of lines displayed to their liking, and then download the resulting text files as a convenient ZIP archive. 📥" 
-			href="#" data-src="pdfTotext.html"  >PDFs to Text Converter </a> </li>
-  
-			<li> <a  class="alink"
-				data-desc="✉️ tools for add or remove dots in email addresses. and copy the result"
-				href="#" data-src="dot.html" >add/remove points in email</a></li>
-
+		  href="#" data-src="emailparts.html" >Parts,Filter Email Tools:  </a></li> 
+		 
 		  <li> <a  class="alink" 
 		  data-desc="tool that checks server status based on user-inputted information and displays the results. Users can copy information of servers that are not okay and write error messages." 
 		  href="#" data-src="serverstatus.html" >Server Status 🖥 </a></li>
@@ -191,11 +182,18 @@
 	           data-desc="tool helps when you have a list of servers, but each server has different charging data numbers , The tool allows you to extract the IP of a server based on its charging data number." 
 	           href="#" data-src="ipparted.html" >N.K By Server</a></li>
 		  
+	         <li><a class="alink" 
+	         data-desc="🛠 tool that converts PDF files to text, 📄 cleans up the text by removing URLs and special characters, Users can easily adjust the number of lines displayed to their liking, and then download the resulting text files as a convenient ZIP archive. 📥" 
+	         href="#" data-src="pdfTotext.html"  >PDFs to Text Converter </a> </li>
 	         
-	       
+	          <li> <a  class="alink"
+	          data-desc="✉️ tools for add or remove dots in email addresses. and copy the result"
+	          href="#" data-src="dot.html" >add/remove points in email</a></li>
 	          
 	          
-	         	
+	         	<li> <a class="alink" 
+	         	data-desc="tool for extract all email addresses from a file they upload" 
+	         	href="#" data-src="extracfromfile.html" >extract Emails from file </a></li>
 	         	
 	         	
 	         	    <li> <a class="alink" 
@@ -242,8 +240,8 @@
 
 			<!-- Sidebar 2 -->
 			<div id="sidebar2">
-				<h5>Notes</h5>
-				<textarea id="notes" rows="18"></textarea>
+				 
+				<textarea id="notes" cols="35" rows="25"></textarea>
 			</div>
 
 		</div>
@@ -312,7 +310,7 @@ $(document).ready(function(){
 	<!-- Footer -->
 	<footer class="footer">
 		<div class="container">
-			<p>Designed and developed by <a class="tag" href="https://t.me/belkhnati_zakariae">zakariae belkhnati</a></p>
+			<p>Designed and developed by <a class="tag" href="https://t.me/belkhnati_zakariae">zakichan</a></p>
 		</div>
 	</footer>
 	
