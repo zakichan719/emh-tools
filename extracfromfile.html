@@ -71,7 +71,7 @@
                         }
                     }
                     
-                    alert("Finished extracting emails!");
+                   
                     
                     const link = document.querySelector('a.dynamic');
                     link.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(emails));
@@ -80,7 +80,9 @@
                 
                 reader.readAsText(file);
             }
-        };
+        }; 
+        
+        alert("Finished extracting emails!");
     </script>
 </body>
 </html>
