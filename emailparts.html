@@ -81,6 +81,7 @@ color: rgb(255, 255, 255)
 <br>   
 <button  onclick="randomline()">parts</button> 
 deploy count<input value="6" max="30" min="1" id="deploycount"  type="number">
+check email <input type="checkbox"   id="emailcheckbox" checked>
 </center>
 
 <center> 
@@ -222,22 +223,59 @@ var mailformat = /^[\w-\.]+@(gmail|googlemail)\.com$/;
 var d=1
 
 
+var checkbox = document.getElementById("emailcheckbox");
+      
+     
+
+
+
+
+
+
+
+
+
+
+
 
 for (let i = 0; i < stringArray.length; i++) {
    
+
+  if (checkbox.checked) {
+        
+    if(stringArray[i]!="" && stringArray[i].match(mailformat)!=null)
+    {
+    document.getElementById('textarea'+d).value += stringArray[i]+"\n";
+    d=d+1
+    if(d>deploycount){
+      d=1;
+    }
+    }
+
+  } else {
+    if(stringArray[i]!="" )
+    {
+    document.getElementById('textarea'+d).value += stringArray[i]+"\n";
+    d=d+1
+    if(d>deploycount){
+      d=1;
+    }
+    }
+  }
  
-  if(stringArray[i]!="" && stringArray[i].match(mailformat)!=null)
-  {
-  document.getElementById('textarea'+d).value += stringArray[i]+"\n";
-  d=d+1
-  if(d>deploycount){
-    d=1;
-  }
-  }
+ 
+
+
+
 
 
 
   }
+
+
+
+
+
 }
  
  </script>
